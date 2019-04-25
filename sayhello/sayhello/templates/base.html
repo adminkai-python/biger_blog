@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}-SayHello</title>
+    {% block head %}{% endblock %}
+
+    <link rel="stylesheet" href="{{ url_for("static",filename="css/bootstrap.min.css") }}">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ url_for("static",filename="js/bootstrap.min.js") }}"></script>
+</head>
+<body>
+
+<div class="container" style="width:500px;">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+            <div class="page-header">
+              <h1>Say Hello<small>to the word</small></h1>
+            </div>
+		</div>
+	</div>
+
+{% for message in get_flashed_messages() %}
+    <div class="alert">{{ message }}</div>
+
+{% endfor %}
+
+
+
+
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+            {% block body %}{% endblock %}
+		</div>
+	</div>
+
+
+	<div class="row clearfix" style="margin-top:50px;">
+		<div class="col-md-12 column">
+
+        <ol class="breadcrumb">
+          <li><a href="#">2019 by:Wallace</a></li>
+          <li><a href="#">GitHub</a></li>
+          <li class="active">关于本站</li>
+        </ol>
+
+            {% block footer %}{% endblock %}
+		</div>
+	</div>
+</div>
+
+
+
+
+
+{{ moment.include_moment(local_js=url_for("static",filename="js/moment.js")) }}
+{{ moment.locale(auto_detect=True) }}
+{% block script %}{% endblock %}
+</body>
+</html>

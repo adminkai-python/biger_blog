@@ -1,0 +1,11 @@
+{% macro fieldForm(func) %}
+    {{ func(**kwargs) }}
+    {% if func.errors %}
+        {% for error in func.errors %}
+            <smal>{{ error }}</smal>
+        {% endfor %}
+
+
+    {% endif %}
+
+{% endmacro %}
